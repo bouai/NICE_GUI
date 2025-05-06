@@ -1,0 +1,25 @@
+﻿document_name,document_type,client_identifier,entity_legal_name,date_of_incorporation,dba_name,dba_address,phone_number,number_of_employees,number_of_branches,client_regulated,name_of_regulator,id_number,country_issuing_id,id_type,date_of_id_issuance,is_payment_intermediary,member_type,member_association,member_role,member_legal_name,member_first_name,member_middle_name,member_last_name,ownership_percentage,identification_number,issuing_country,id_expiry_date,identification_type,address_line_1,address_line_2,address_country ,date_of_birth,country_of_citizenship,city_of_birth,country_of_birth,onboarding_created_date,onboarding_updated_date
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001001,"Banco BPI, SA",29882,BANCO BPI SA,"RUE TENENTE VALADIM 284
+LISBON 4100-475
+Portugal (PT)",NA,NA,NA,Yes,Banco de Portugal,501214534,Portugal,Govt ID,1981,No,Entity,Controling entity,Shareholding entity,Fundación Bancaria Caixa d'Estalvis i Pensions de Barcelona,NA,NA,NA,NA,NA,Spain,NA,NA,Plaza Weyler número 3,07001 Palma (Illes Balears),Spain,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001002,Nova Ljubljanska banka dd Ljubljana,29882,BANCO BPI SA,"Trg Republike 2
+LJUBLJANA 1520
+Slovenia (SI)",38614763900,NA,117,Yes,Banka Slovenije - Bank of Slovenia,5860571000,Slovenia,Govt ID,NA,No,Entity,Controling entity,Shareholding entity,Bank of New York Mellon (on behalf of GDR holders),NA,NA,NA,NA,NA,USA,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001003,PUNJAB NATIONAL BANK,"Apr 12, 1895",PNB,"Plot No.4, Sector-10 Dwarka New Delhi 110075 Delhi India",(+91) 011 28044205,68781,NA,Yes,NA,AAACP0165G,India,Govt ID,NA,No,Individual,Beneficial Owner,CEO,NA,SS Mallikarjuna,NA,Rao,NA,NA,India,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001003,PUNJAB NATIONAL BANK,"Apr 12, 1895",PNB,"Plot No.4, Sector-10 Dwarka New Delhi 110075 Delhi India",(+91) 011 28044205,68781,NA,Yes,NA,AAACP0165G,India,Govt ID,NA,No,Individual,Beneficial Owner,Director,NA,Pankaj,NA,Jain,NA,NA,India,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001004,ABN AMRO Bank NV,NA,NA,"Gustav Mahlerlaan 10,
+1082 PP Amsterdam,
+Netherlands",+31 10 2411720,NA,NA,Yes,De Nederlandsche Bank NV,NA,India,Govt ID,NA,No,Entity,Beneficial Owner,NA,Stichting Administratiekantoor Continuiteit ABN AMRO Group,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Netherlands,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001004,ABN AMRO Bank NV,NA,NA,"Gustav Mahlerlaan 10,
+1082 PP Amsterdam,
+Netherlands",+31 10 2411720,NA,NA,Yes,De Nederlandsche Bank NV,NA,India,Govt ID,NA,No,Entity,Beneficial Owner,NA,Stichting administratiekantoor beheer financiële instellingen NLFI,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Netherlands,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001005,PRIORBANK Joint-Stock Company,33431,NA,"V. Khoruzhaya Street 31A
+MINSK 220002
+Belarus (BY)",+ 375 17 289 90 90,NA,NA,Yes,National Bank of the Republic of Belarus,100220190,India,Govt ID,NA,No,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001006,Central Bank of Cyprus,1963,NA,"PO Box 25529 CY-1395,
+80 Kennedy Avenue,
+1076 Nicosia,
+Cyprus",+357 22 710000,400,NA,NA,NA,NA,NA,NA,NA,No,Government,Beneficial owner,NA,Government of the Republic of Cyprus,NA,NA,NA,100,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+SWIFT/Lexis Nexis/D&B/Passport,Beneficial Owner Evidence/ Photo ID,1001007,"Allied Irish Banks, p.l.c",NA,NA,"10 Molesworth Street,
+D02 R126 Dublin 2,
+Ireland",+353 1 6600311,10226,270,Yes,Central Bank of Ireland,3U8WV1YX2VMUHH7Z1Q21,Ireland,Govt ID,NA,No,Entity,Controling entity,Shareholding entity,AIB Group plc,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,Ireland,NA,NA,NA,NA,,
