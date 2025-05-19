@@ -398,7 +398,7 @@ def client_detail(client_id: int):
         with ui.element('div').classes('grid grid-cols-1 lg:grid-cols-3 gap-6'):
             # Materiality Card
             with ui.card().classes('p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300'):
-                ui.label('Materiality').classes('text-2xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200')
+                ui.label('Researcher Agent').classes('text-2xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200')
                 with ui.column().classes('gap-3'):
                     # 1. Materiality Hit logic
                     material_change_val = refresh_data.get('material_change', '')
