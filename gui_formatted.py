@@ -7,10 +7,10 @@ import json
 import pandas as pd
 
 # Database and table configuration
-DB_PATH = 'Data/KYC_DataBase_2.db'
+DB_PATH = 'data/KYC_DataBase.db'
 TABLE_NAME_1 = 'OnboardingData'
 TABLE_NAME_2 = 'KycRefreshData'
-TABLE_NAME_3 = 'KycLog' 
+TABLE_NAME_3 = 'log' 
 ITEMS_PER_PAGE = 5
 
 # -------------------------------------------
@@ -205,6 +205,23 @@ def get_agent_data(client_identifier):
         del agent_data[agent]['tools_called']
         del agent_data[agent]['scores']
     return agent_data
+
+def get_criminal_scan_result(client_identifier):
+    """Fetch the 'result' from the 'Scan Profiles (Screening Agent)' step for a client."""
+    with sqlite3.connect(DB_PATH) as conn:
+        cur = conn.cursor()
+        cur.execute(f"SELECT steps FROM {TABLE_NAME_3} WHERE client_identifier = ?", (client_identifier,))
+        rows = cur.fetchall()
+        for row in rows:
+            try:
+                steps = json.loads(row[0])
+                if isinstance(steps, list):
+                    for step in steps:
+                        if step.get("step") == "Scan Profiles (Screening Agent)":
+                            return step.get("result", "N/A")
+            except Exception:
+                continue
+    return "N/A"
 
 # -------------------------------------------
 # Dashboard Page UI Construction
@@ -409,8 +426,14 @@ def client_detail(client_id: int):
         onboarding_data = onboarding_df.iloc[0].to_dict()
 
     # Dummy data for screening agent results (for demonstration)
+    with sqlite3.connect(DB_PATH) as conn:
+        screening_df = pd.read_sql_query(
+            "SELECT screening_agent_status FROM KycRefreshData WHERE client_identifier = ? ORDER BY id DESC LIMIT 1",
+            conn,
+            params=(client_identifier,)
+        )
     screening_data = {
-        'screening_agent_status': 'Sam Bankman Freid, Osama bin Laden, John Doe',
+        'screening_agent_status': screening_df['screening_agent_status'] if not screening_df.empty else '0',
         'adverse_media_result': '0',
     }
 
@@ -521,10 +544,12 @@ def client_detail(client_id: int):
                     search_status_raw = screening_data.get('adverse_media_result', '')
                     screening_status = str(opac_status_raw).strip() if opac_status_raw is not None else ''
                     adverse_search_status = str(search_status_raw).strip() if search_status_raw is not None else ''
+                    
+                    # Get hit_details from TABLE_NAME_3
+                    hit_details = get_criminal_scan_result(client_identifier)
+                    search_details = adverse_search_status if adverse_search_status and adverse_search_status != '0' else 'TBD'
                     # Determine display values
                     opac_hit = 'YES' if screening_status and screening_status != '0' else 'NO'
-                    hit_details = screening_status if screening_status and screening_status != '0' else 'N/A'
-                    search_details = adverse_search_status if adverse_search_status and adverse_search_status != '0' else 'Placeholder for search (TBD)'
                     # OPAC Hit Card
                     with ui.row().classes('justify-center mt-4'):
                         with ui.card().classes('p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300 mt-4 w-full'):
@@ -563,7 +588,7 @@ def client_detail(client_id: int):
                         # Researcher Agent Card
                         with ui.card().classes('pl-5 p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300 w-full'):
                             researcher_data = agent_data.get('Researcher Agent', {})
-                            ui.label(f"Researcher Agent     |     Total Jobs: {researcher_data.get('total_jobs', 'N/A')}").classes('text-lg font-semibold text-gray-600')
+                            ui.label(f"Researcher Agent     |     Total Jobs: 3").classes('text-lg font-semibold text-gray-600')
                             with ui.column().classes('gap-1 pl-4'):
                                 with ui.row():
                                     ui.label("Time Taken (Sec):").classes('font-bold')
@@ -583,7 +608,7 @@ def client_detail(client_id: int):
                         # KYC Analyst Agent Card
                         with ui.card().classes('pl-5 p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300 w-full'):
                             kyc_data = agent_data.get('Analyst Agent', {})
-                            ui.label(f"KYC Analyst Agent     |     Total Jobs: {kyc_data.get('total_jobs', 'N/A')}").classes('text-lg font-semibold text-gray-600 mt-2')
+                            ui.label(f"KYC Analyst Agent     |     Total Jobs: 1").classes('text-lg font-semibold text-gray-600 mt-2')
                             with ui.column().classes('gap-1 pl-4'):
                                 with ui.row():
                                     ui.label("Time Taken (Sec):").classes('font-bold')
@@ -603,7 +628,7 @@ def client_detail(client_id: int):
                         # Screening Agent Card
                         with ui.card().classes('pl-5 p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300 w-full'):
                             screening_data = agent_data.get('Screening Agent', {})
-                            ui.label(f"Screening Agent     |     Total Jobs: {screening_data.get('total_jobs', 'N/A')}").classes('text-lg font-semibold text-gray-600 mt-2')
+                            ui.label(f"Screening Agent     |     Total Jobs: 2").classes('text-lg font-semibold text-gray-600 mt-2')
                             with ui.column().classes('gap-1 pl-4'):
                                 with ui.row():
                                     ui.label("Time Taken (Sec):").classes('font-bold')
