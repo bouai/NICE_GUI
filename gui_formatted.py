@@ -464,36 +464,14 @@ def client_detail(client_id: int):
             with ui.card().classes('p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300'):
                 ui.label('Refresh Details').classes('text-2xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200')
                 with ui.row().classes('gap-2'):  # Create a row to split content into two sections
-                    # Left Section: Basic Refresh Info
+                    # Basic Refresh Info
                         with ui.column().classes('gap-1 w-5/9'):  # Left section takes half the width
                             ui.label(f"Client Name: {refresh_data.get('entity_legal_name', 'N/A')}").classes('text-lg text-gray-600 font-medium')
                             ui.label(f"Client Identifier: {refresh_data.get('client_identifier', 'N/A')}").classes('text-lg text-gray-600')
                             ui.label(f"Client Type: {refresh_data.get('member_type', 'N/A')}").classes('text-lg text-gray-600')
                             ui.label(f"Client Domicile Country: {refresh_data.get('country_issuing_id', 'N/A')}").classes('text-lg text-gray-600')
                             ui.label(f"Client Documents: {refresh_data.get('document_name', 'N/A')}").classes('text-lg text-gray-600')
-                            
-                    # Right Section: Refresh Status and Dates
-                        with ui.column().classes('gap-3 pl-4 w-4/9'): 
-                            with ui.card().classes('p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300'):
-                                refresh_status_value = str(refresh_data.get('refresh_status', ''))
-                                #ui.label(f"Refresh Status: {refresh_status_value}").classes('text-lg text-gray-600 font-medium')
-                                ui.label(f"Refresh Created Date: {refresh_data.get('KycRefresh_created_date', 'N/A')}").classes('text-lg text-gray-600')
-                                ui.label(f"Refresh Updated Date: {refresh_data.get('KycRefresh_updated_date', 'N/A')}").classes('text-lg text-gray-600')
-
-                                 # Add the status button here
-                                if refresh_status_value == '1':
-                                    ui.button(
-                                        "KYC Refresh is Triggered"
-                                    ).classes('w-56 text-center bg-blue-500 text-white rounded-md hover:bg-blue-600 mt-2')
-                                elif refresh_status_value == '0':
-                                    ui.button(
-                                        "Profile Updates Absorbed"
-                                    ).classes('w-56 text-center bg-green-500 text-white rounded-md hover:bg-green-600 mt-2')
-                                else:  # Covers both '' and None
-                                    ui.button(
-                                        "KYC Refresh Not Triggered"
-                                    ).classes('w-56 text-center bg-green-500 text-white rounded-md hover:bg-green-600 mt-2')
-                                                
+                                 
         # Second Row: Materiality, Screening, Agents Performance
         ui.label('Additional Details').classes('text-2xl font-semibold text-blue-600 mb-4')  # Title for the second row
         with ui.element('div').classes('grid grid-cols-1 lg:grid-cols-3 gap-6'):
@@ -553,7 +531,7 @@ def client_detail(client_id: int):
                     # OPAC Hit Card
                     with ui.row().classes('justify-center mt-4'):
                         with ui.card().classes('p-6 bg-white rounded-xl shadow-lg border border-blue-500 hover:shadow-xl transition-shadow duration-300 mt-4 w-full'):
-                            ui.label(f"OPAC Hit: {opac_hit}").classes('text-lg font-semibold text-gray-600 justify-center items-center')
+                            ui.label(f"OFAC Hit: {opac_hit}").classes('text-lg font-semibold text-gray-600 justify-center items-center')
                             with ui.row():
                                 ui.label("Hit Details:").classes('font-bold')
                                 ui.label(hit_details)
