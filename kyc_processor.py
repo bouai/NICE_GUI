@@ -13,6 +13,18 @@ from prompts import analyst_prompt, researcher_prompt, screening_prompt
 from utils.load import TimerContext
 from tools.data_updater import insert_kyc_data
 
+def clean_screening_output(text):
+    """Clean unwanted characters and debug info from screening agent output."""
+    if not isinstance(text, str):
+        return text
+    # Remove lines starting with --- or xml or curly braces with non-JSON
+    text = re.sub(r'---.*', '', text)
+    text = re.sub(r'xml.*', '', text)
+    text = re.sub(r"\{.*\}", '', text)
+    # Remove extra whitespace and newlines
+    text = text.strip()
+    return text
+
 async def process_existing_data(agent, old_doc):
     """Step 1: Process existing client data."""
     with TimerContext("Step 1 - Process existing data"):
@@ -146,6 +158,9 @@ async def scan_profiles(agent, result):
                 {"content": screening_prompt.SCREENING2, "role": "user"}
             ],
         )
+        # Clean the output
+        if hasattr(result, "final_output") and isinstance(result.final_output, str):
+            result.final_output = clean_screening_output(result.final_output)
         return result
     
 async def adverse_media(agent, result):
